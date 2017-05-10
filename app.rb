@@ -1,5 +1,8 @@
 require 'rubygems'
 require 'sinatra'
+# Sinatra common extensions
+# https://github.com/sinatra/sinatra/tree/master/sinatra-contrib#classic-style
+require 'sinatra/contrib'
 require 'sinatra/reloader' if development?
 require 'aws-sdk'
 require 'haml'

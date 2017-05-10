@@ -8,7 +8,8 @@
 .callout
   %h5
     = @vpc.name
-    %a{"data-open" => "json-#{@vpc.vid}"} json
+    %small
+      %a{"data-open" => "json-#{@vpc.vid}"} resource.json
     .reveal{:id => "json-#{@vpc.vid}", "data-reveal" => ""}
       %button.close-button{"aria-label" => "Close modal", "data-close" => "", :type => "button"}
         %span{"aria-hidden" => "true"} ×
@@ -34,7 +35,8 @@
           .card-divider
             %h5
               = subnet.name
-              %a{"data-open" => "json-#{subnet.sid}"} json
+              %small
+                %a{"data-open" => "json-#{subnet.sid}"} resource.json
             %span.label.warning
               = subnet.sid
             %span.label.warning

@@ -66,7 +66,7 @@ DataMapper.finalize.auto_upgrade!
 def aws_resource_name(resource)
   tags_with_key_name = resource.tags.select{|tag| tag.key == "Name"}
   if tags_with_key_name.any?
-    tags_with_key_name.first.value
+    tags_with_key_name.first.try(:value)
   else
     "no-resource-tag-name"
   end
