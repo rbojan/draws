@@ -1,0 +1,37 @@
+%nav{"aria-label" => "You are here:", :role => "navigation"}
+  %ul.breadcrumbs
+    %li
+      %span.badge.secondary= @instances.count
+      Instances
+
+%table.hover
+  %thead
+    %tr
+      %th
+        Name
+        %span.label.secondary Instance ID
+        %span.label.secondary Type
+      %th Private IP
+      %th Public IP
+      %th VPC Name
+      %th Subnet Name
+      %th State
+  %tbody
+    - @instances.each do |instance|
+      %tr
+        %td
+          %a{:href => "/instances/#{instance.iid}"}
+            = resource_name(instance.name)
+          %br
+          %span.label.secondary
+            = instance.iid
+          %span.label.secondary
+            = instance.instance_type
+        %td= instance.private_ip_address
+        %td= instance.public_ip_address
+        %td
+          %a{:href => "/vpcs##{instance.vpc.vid}"}= instance.vpc.name
+        %td= instance.subnet.name
+        %td
+          %span.label{:class => "#{class_for_state(instance.state)}"}
+            = instance.state

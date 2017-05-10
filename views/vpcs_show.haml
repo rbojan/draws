@@ -1,0 +1,20 @@
+%nav{"aria-label" => "You are here:", :role => "navigation"}
+  %ul.breadcrumbs
+    %li
+      %a{:href => "/vpcs"} VPCs
+    %li
+      %a{:href => "/"}= @vpc.name
+
+- @vpc.subnets.each do |subnet|
+  .card
+    .card-divider
+      = subnet.name
+      %span.label.warning
+        = subnet.sid
+    .card-section
+      %ul
+        - subnet.instances.each do |instance|
+          %li
+            = instance.name
+            %span.label.secondary
+              = instance.instance_type

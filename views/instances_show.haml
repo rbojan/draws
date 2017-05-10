@@ -1,0 +1,25 @@
+%nav{"aria-label" => "You are here:", :role => "navigation"}
+  %ul.breadcrumbs
+    %li
+      %a{:href => "/instances"} Instances
+    %li
+      = resource_name(@instance.name)
+
+%h5
+  = resource_name(@instance.name)
+  in
+  %a{:href => "/vpcs##{@instance.vpc.vid}"}= @instance.vpc.name
+  \|
+  %a{:href => "/vpcs##{@instance.vpc.vid}"}= @instance.subnet.name
+%p
+  %span.label.primary
+    = @instance.vpc_id
+  %span.label.warning
+    = @instance.subnet_id
+  %span.label.secondary
+    = @instance.iid
+  %span.label{:class => "#{class_for_state(@instance.state)}"}
+    = @instance.state
+
+%pre.callout
+  = JSON.pretty_generate(JSON.load(@instance.resource_json))

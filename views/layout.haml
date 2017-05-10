@@ -1,0 +1,36 @@
+!!!
+%html.no-js{:dir => "ltr", :lang => "en"}
+  %head
+    %meta{:charset => "utf-8"}
+    %meta{:content => "ie=edge", "http-equiv" => "x-ua-compatible"}
+    %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}
+    %title draws
+    %link{:href => "/css/foundation.css", :rel => "stylesheet"}
+    %link{:href => "/css/app.css", :rel => "stylesheet"}
+  %body
+    .title-bar{"data-hide-for" => "medium", "data-responsive-toggle" => "draws-menu"}
+      %button.menu-icon{"data-toggle" => "", :type => "button"}
+      .title-bar-title Menu
+    #draws-menu.top-bar
+      .top-bar-left
+        %ul.dropdown.menu{"data-dropdown-menu" => ""}
+          %li.menu-text draws
+          %li
+            %a{:href => "/vpcs"} VPCs & Subnets
+          %li
+            %a{:href => "/instances"} Instances
+          %li
+            %a{:href => "#"} Help
+          %li
+            %a{:href => "/reload"} Reload
+    .row
+      .large-12.columns
+        %p
+    .row
+      .large-12.columns
+        = yield
+
+    %script{:src => "/js/vendor/jquery.js"}
+    %script{:src => "/js/vendor/what-input.js"}
+    %script{:src => "/js/vendor/foundation.js"}
+    %script{:src => "/js/app.js"}
