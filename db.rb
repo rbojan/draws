@@ -57,7 +57,9 @@ DataMapper.finalize
 
 # AWS Helper methods
 def aws_resource_name(resource)
-  resource.tags.select{|tag| tag.key == "Name"}.first.try(:value) if resource.tags.select{|tag| tag.key == "Name"}.any?
+  p resource.tags.select{|tag| tag.key == "Name"}
+  # resource.tags.select{|tag| tag.key == "Name"}.first.try(:value) if resource.tags.select{|tag| tag.key == "Name"}.any?
+  "Some-Name"
 end
 
 # ETL job :)
