@@ -34,11 +34,9 @@ end
 #end
 
 # Endpoints
-get '/' do
-  redirect "/vpcs"
-end
 
-get '/vpcs' do
+# '/' ==> /vpcs'
+get '/' do
   @vpcs = Vpc.all(:order => [:vid.desc])
   haml :vpcs
 end
