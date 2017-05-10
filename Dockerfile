@@ -8,7 +8,8 @@ RUN mkdir -p $APP_HOME
 WORKDIR $APP_HOME
 
 ADD Gemfile* $APP_HOME/
-RUN bundle install --without development:test --path vendor/bundle --binstubs vendor/bundle/bin -j4 --deployment
+# RUN bundle install --without development:test --path vendor/bundle --binstubs vendor/bundle/bin -j4 --deployment
+RUN bundle install --without development:test
 
 ADD . $APP_HOME
 
