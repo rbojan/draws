@@ -11,12 +11,6 @@ require 'json'
 
 require './db'
 
-# Custom logger
-LOG = Logger.new(STDOUT)
-
-# Load DB on startup
-load_db_on_startup
-
 # tbd. enable/disable the POST _method hack
 # use Rack::MethodOverride
 

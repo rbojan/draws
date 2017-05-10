@@ -1,8 +1,10 @@
 # Datamapper config
-DataMapper::Logger.new($stdout, :debug) if development?
+# Logger level tbd. for production (:info)
+LOG = DataMapper::Logger.new($stdout, :debug) if development?
+LOG = DataMapper::Logger.new($stdout, :debug) if production?
 DataMapper.setup(:default, "sqlite3://#{Dir.pwd}/cache-db.sqlite")
 
-# Structure for tables
+# Structure for tables (schema)
 class Instance
   include DataMapper::Resource
   property :id, Serial
@@ -14,7 +16,6 @@ class Instance
   property :vpc_id, String
   property :subnet_id, String
   property :state, String
-
   property :resource_json, Text
 
   belongs_to :vpc, 'Vpc',
@@ -57,15 +58,9 @@ class Subnet
   has n, :instances, 'Instance', :parent_key => [ :sid ], :child_key  => [ :subnet_id ]
 end
 
-DataMapper.finalize
+# Load DB on startup
+DataMapper.finalize.auto_upgrade!
 
-def load_db_on_startup
-  LOG.info "Loading DB on startup ..."
-  Instance.auto_upgrade!
-  Vpc.auto_upgrade!
-  Subnet.auto_upgrade!
-  LOG.info "Loading DB done"
-end
 
 # AWS Helper methods
 def aws_resource_name(resource)
@@ -77,7 +72,7 @@ def aws_resource_name(resource)
   end
 end
 
-# ETL job :)
+# AWS ETL job :)
 def reload_aws_resources
   ec2 = Aws::EC2::Client.new(region: 'eu-central-1')
 
@@ -132,6 +127,9 @@ def reload_aws_resources
   LOG.info "Loading AWS Resources done"
 end
 
+# aws.rb Dump
+#
+#
 # AWS Resources
 #
 # Aws> ec2.describe_subnets.subnets[0].to_h
