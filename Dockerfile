@@ -2,6 +2,8 @@ FROM ruby:2.3
 
 RUN apt-get update -qq && apt-get install -y build-essential
 
+ENV RACK_ENV=production
+
 ENV APP_HOME /app
 RUN mkdir -p $APP_HOME
 WORKDIR $APP_HOME
