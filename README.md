@@ -53,8 +53,15 @@ tl;dr
 
 ## Development environment
 
+### Start
+
     # using sinatra/reloader?
     ruby app.rb -p 3000 -o 0.0.0.0
 
     # alternatively
     shotgun app.rb -p 3000 -o 0.0.0.0 
+
+### Load sample data
+
+    cat sample_data/schema.sql | sqlite3 cache-db.sqlite
+    cat sample_data/dump.sql | sqlite3 cache-db.sqlite
