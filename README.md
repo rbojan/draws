@@ -25,10 +25,13 @@ tl;dr
     # Reload AWS resources: Flush db and pull AWS Resources into cache
     get '/reload'
 
-    # VPCs & Subnets including Instances Overview
-    get '/vpcs'
+    # VPCs List
+    get '/'
 
-    # Instances List (Overview)
+    # VPCs & Subnets including Instances Show
+    get '/vpcs/:vid'
+
+    # Instances List
     get '/instances'
 
     # Instance Show
@@ -39,12 +42,12 @@ tl;dr
     get  '/regions/:rid/vpc/:vid/instances/:iid'
     get  '/regions/:rid/vpc/:vid/subnets/:sid/instances/:iid'
 
-    # possible?
+    # tbd.: possible?
     namespace '/regions/:rid/
       get  '/instances/:iid/:attribute'
       post '/instances/:iid/:rpc_name'
     
-    # tbd: needed?
+    # tbd.: needed?
     namespace '/admin'
 
 
