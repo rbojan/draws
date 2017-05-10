@@ -58,6 +58,7 @@ DataMapper.finalize
 # AWS Helper methods
 def aws_resource_name(resource)
   p resource.tags.select{|tag| tag.key == "Name"}
+  p resource.tags.select{|tag| tag.key == "Name"}.first
   # resource.tags.select{|tag| tag.key == "Name"}.first.try(:value) if resource.tags.select{|tag| tag.key == "Name"}.any?
   "Some-Name"
 end
