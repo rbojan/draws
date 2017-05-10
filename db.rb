@@ -57,12 +57,11 @@ DataMapper.finalize
 
 # AWS Helper methods
 def aws_resource_name(resource)
-  if resource.tags.select{|tag| tag.key == "Name"}.any?
-    p resource.tags.select{|tag| tag.key == "Name"}
-    p resource.tags.select{|tag| tag.key == "Name"}.first
-    resource.tags.select{|tag| tag.key == "Name"}.first.value
+  tags_with_key_name = resource.tags.select{|tag| tag.key == "Name"}
+  if tags_with_key_name.any?
+    tags_with_key_name.first.value
   else
-    "Some-Name"
+    "no-resource-tag-name"
   end
 end
 
