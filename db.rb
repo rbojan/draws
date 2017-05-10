@@ -1,3 +1,7 @@
+# Datamapper config
+DataMapper::Logger.new($stdout, :debug) if development?
+DataMapper.setup(:default, "sqlite3://#{Dir.pwd}/cache-db.sqlite")
+
 # Structure for tables
 class Instance
   include DataMapper::Resource
@@ -55,6 +59,14 @@ end
 
 DataMapper.finalize
 
+def load_db_on_startup
+  LOG.info "Loading DB on startup ..."
+  Instance.auto_upgrade!
+  Vpc.auto_upgrade!
+  Subnet.auto_upgrade!
+  LOG.info "Loading DB done"
+end
+
 # AWS Helper methods
 def aws_resource_name(resource)
   tags_with_key_name = resource.tags.select{|tag| tag.key == "Name"}
@@ -73,7 +85,7 @@ def reload_aws_resources
   Instance.auto_migrate!
   Vpc.auto_migrate!
   Subnet.auto_migrate!
-  LOG.info "DB Flush done"
+  LOG.info "Flushing DB done"
 
   LOG.info "Loading AWS Resources ..."
   reservations = ec2.describe_instances.reservations
@@ -117,7 +129,7 @@ def reload_aws_resources
   end
   LOG.info "#{subnets.count} Subnet(s) were loaded"
 
-  LOG.info "AWS Resources Reloaded"
+  LOG.info "Loading AWS Resources done"
 end
 
 # AWS Resources

@@ -14,16 +14,8 @@ require './db'
 # Custom logger
 LOG = Logger.new(STDOUT)
 
-# define content types for all routes (tbd. add :json)
-# need to add require 'sinatra/respond_with'
-# respond_to :html
-
-# Datamapper config
-DataMapper::Logger.new($stdout, :debug) if development?
-DataMapper.setup(:default, "sqlite3://#{Dir.pwd}/cache-db.sqlite")
-
-# Reload AWS Resources on startup
-# reload_aws_resources
+# Load DB on startup
+load_db_on_startup
 
 # tbd. enable/disable the POST _method hack
 # use Rack::MethodOverride
@@ -40,20 +32,6 @@ helpers do
   def resource_name(name)
     name.nil? ? "no-resource-name-given" : name
   end
-
-  # View helpers - currently not used
-  def remote_user
-    request.env['REMOTE_USER']
-  end
-
-  def admin?
-    remote_user.start_with? 'admin'
-  end
-
-  def owner?(user)
-    admin? || remote_user == user
-  end
-
 end
 
 # Basic Authentication
@@ -73,6 +51,7 @@ end
 
 get '/vpcs/:vid' do
   @vpc = Vpc.first(:vid => params[:vid])
+  halt 404 unless @vpc
   haml :vpcs_show
 end
 
@@ -83,6 +62,7 @@ end
 
 get '/instances/:iid' do
   @instance = Instance.first(:iid => params[:iid])
+  halt 404 unless @instance
   haml :instances_show
 end
 
