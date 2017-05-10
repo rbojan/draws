@@ -13,72 +13,32 @@
   %ul.menu
     - @vpcs.each do |vpc|
       %li
-        %a{:href => "##{vpc.vid}"}
+        %a{:href => "/vpcs/#{vpc.vid}"}
           %b= vpc.name
 
-- @vpcs.each do |vpc|
-  %span{:id => "#{vpc.vid}"}
-  .callout
-    %h5
-      %a.button{"data-open" => "json-#{vpc.vid}"} json
-      = vpc.name
-      .reveal{:id => "json-#{vpc.vid}", "data-reveal" => ""}
-        %button.close-button{"aria-label" => "Close modal", "data-close" => "", :type => "button"}
-          %span{"aria-hidden" => "true"} ×
-        %pre= JSON.pretty_generate(JSON.load(vpc.resource_json))
-    %p
-      %span.label
-        = vpc.vid
-      %span.label
-        = vpc.state
-      %span.label.warning
-        = vpc.subnets.count
-        Subnets
-      %span.label.secondary
-        = vpc.instances.count
-        Instances
-    %p
-      = vpc.cidr_block
-
-    .row.small-up-1.medium-up-2.large-up-3
-      - vpc.subnets.each do |subnet|
-        .column
-          .card
-            .card-divider
-              %h5
-                %a.button.warning{"data-open" => "json-#{subnet.sid}"} json
-                = subnet.name
-              %span.label.warning
-                = subnet.sid
-              %span.label.warning
-                = subnet.availability_zone
-            .card-section
-              %p
-                = subnet.cidr_block
-                \-
-                = subnet.available_ip_address_count
-                available IP addresses
-              .reveal{:id => "json-#{subnet.sid}", "data-reveal" => ""}
-                %button.close-button{"aria-label" => "Close modal", "data-close" => "", :type => "button"}
-                  %span{"aria-hidden" => "true"} ×
-                %pre= JSON.pretty_generate(JSON.load(subnet.resource_json))
-              %table.hover.unstriped
-                %thead
-                  %tr
-                    %th
-                      Instances
-                      %span.badge.secondary= subnet.instances.count
-                %tbody
-                  - subnet.instances.each do |instance|
-                    %tr
-                      %td
-                        %a{:href => "/instances/#{instance.iid}"}= resource_name(instance.name)
-                        %span.label{:class => "#{class_for_state(instance.state)}"}
-                          = instance.private_ip_address
-                        - if !instance.public_ip_address.nil?
-                          %span.label{:class => "#{class_for_state(instance.state)}"}
-                            = instance.public_ip_address
-  %p
-    %a{:href => "#top"} top
+.row.small-up-1.medium-up-2.large-up-3
+  - @vpcs.each do |vpc|
+    .column
+      .callout
+        %h5
+          %a.button{:href => "/vpcs/#{vpc.vid}"}= vpc.name
+          %a{"data-open" => "json-#{vpc.vid}"} json
+          .reveal{:id => "json-#{vpc.vid}", "data-reveal" => ""}
+            %button.close-button{"aria-label" => "Close modal", "data-close" => "", :type => "button"}
+              %span{"aria-hidden" => "true"} ×
+            %pre= JSON.pretty_generate(JSON.load(vpc.resource_json))
+        %p
+          %span.label
+            = vpc.vid
+          %span.label
+            = vpc.state
+          %span.label.warning
+            = vpc.subnets.count
+            Subnets
+          %span.label.secondary
+            = vpc.instances.count
+            Instances
+        %p
+          = vpc.cidr_block
 
 

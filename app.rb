@@ -71,6 +71,11 @@ get '/vpcs' do
   haml :vpcs
 end
 
+get '/vpcs/:vid' do
+  @vpc = Vpc.first(:vid => params[:vid])
+  haml :vpcs_show
+end
+
 get '/instances' do
   @instances = Instance.all(:order => [:vpc_id.desc])
   haml :instances
@@ -84,9 +89,4 @@ end
 get '/reload' do
   reload_aws_resources
   redirect '/'
-end
-
-get '/vpcs/:vid' do
-  @vpc = Vpc.first(:vid => params[:vid])
-  haml :vpcs_show
 end
