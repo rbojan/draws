@@ -12,6 +12,4 @@ RUN bundle install --without development:test
 
 ADD . $APP_HOME
 
-EXPOSE 3000
-
-CMD ["ruby", "app.rb", "-p", "3000", "-o", "0.0.0.0"]
+CMD ["ruby", "app.rb", "-p", "5000", "-o", "0.0.0.0"]
