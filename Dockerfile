@@ -3,7 +3,6 @@ FROM ruby:2.3
 RUN apt-get update -qq && apt-get install -y build-essential
 
 ENV APP_HOME /app
-ENV PORT 3000
 RUN mkdir -p $APP_HOME
 WORKDIR $APP_HOME
 
@@ -13,6 +12,6 @@ RUN bundle install --without development:test
 
 ADD . $APP_HOME
 
-EXPOSE $PORT
+EXPOSE 3000
 
-CMD ["ruby", "app.rb", "-p", "$PORT"]
+CMD ["ruby", "app.rb", "-p", "3000"]
