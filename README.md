@@ -60,6 +60,7 @@ Dokku Dockerfile Deployment
 
     # Local
     git remote add dokku dokku@<dokku-server>:draws
+    git push dokku master
 
     # Remote dokku server
     # Automatically retrieve and install Lets Encrypt certificates
