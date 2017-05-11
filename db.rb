@@ -74,15 +74,16 @@ end
 
 # AWS ETL job :)
 def reload_aws_resources
-  ec2 = Aws::EC2::Client.new(region: 'eu-central-1')
 
   LOG.info "Flushing DB ..."
-  Instance.auto_migrate!
-  Vpc.auto_migrate!
-  Subnet.auto_migrate!
+  DataMapper.finalize.auto_migrate!
   LOG.info "Flushing DB done"
 
   LOG.info "Loading AWS Resources ..."
+  ENV['AWS_REGION'] ||= 'eu-central-1'
+  LOG.info "AWS Region: #{ENV['AWS_REGION']}"
+  ec2 = Aws::EC2::Client.new(region: ENV['AWS_REGION'])
+
   reservations = ec2.describe_instances.reservations
   reservations.each do |reservation|
     reservation.instances.each do |instance|

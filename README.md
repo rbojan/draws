@@ -2,7 +2,7 @@
 
 [Sinatra](http://www.sinatrarb.com/) web application for accessing and reading [AWS Resources](//missing_link) using [aws-sdk for ruby](//github.com/aws/aws-sdk-ruby).
 
-This applications aims to provide a better User Experience in terms of Overview, Accessibility etc. for AWS Resources like VPCs, Subnets, Instances etc.
+This application aims to provide a better User Experience in terms of Overview, Accessibility etc. for AWS Resources like VPCs, Subnets, Instances etc.
 
 AWS Resources are pulled using the `/reload` endpoint and stored in a sqlite database for caching purposes. 
 
@@ -66,11 +66,14 @@ Dokku Dockerfile Deployment
     # Automatically retrieve and install Lets Encrypt certificates
     dokku letsencrypt draws
 
-    # HTTP Basic Auth
+    # HTTP Basic Auth over TLS (Lets Encrypt) for Security
     dokku http-auth:on draws <your-name> <your-secure-password>
 
-    # AWS credentials
+    # AWS Credentials
     dokku config:set draws AWS_ACCESS_KEY_ID=XXX AWS_SECRET_ACCESS_KEY=XXX
+
+    # Optional: AWS Region (default: 'eu-central-1')
+    dokku config:set draws AWS_REGION=<aws-region>
 
 http://draws.dokku-server.tld
 
