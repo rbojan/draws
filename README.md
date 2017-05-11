@@ -50,6 +50,29 @@ tl;dr
     # tbd.: needed?
     namespace '/admin'
 
+## Deployment
+
+Deployment instructions using various platforms.
+
+### Dokku
+
+Dokku Dockerfile Deployment
+
+    # Local
+    git remote add dokku dokku@<dokku-server>:draws
+
+    # Remote dokku server
+    # Automatically retrieve and install Lets Encrypt certificates
+    dokku letsencrypt draws
+
+    # HTTP Basic Auth
+    dokku http-auth:on draws <your-name> <your-secure-password>
+
+    # AWS credentials
+    dokku config:set draws AWS_ACCESS_KEY_ID=XXX AWS_SECRET_ACCESS_KEY=XXX
+
+http://draws.dokku-server.tld
+
 
 ## Development environment
 
