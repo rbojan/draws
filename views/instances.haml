@@ -9,13 +9,13 @@
     %tr
       %th
         Name
+      %th
         %span.label.secondary Instance ID
         %span.label.secondary Type
-      %th Private IP
-      %th Public IP
-      %th VPC Name
-      %th Subnet Name
-      %th State
+      %th
+        %span.label.secondary Private IP
+        %span.label.secondary Public IP
+      %th vpc | Subnet Name
   %tbody
     - @instances.each do |instance|
       %tr
@@ -23,15 +23,19 @@
           %a{:href => "/instances/#{instance.iid}"}
             = resource_name(instance.name)
           %br
+
+        %td
           %span.label.secondary
             = instance.iid
           %span.label.secondary
             = instance.instance_type
-        %td= instance.private_ip_address
-        %td= instance.public_ip_address
-        %td
-          %a{:href => "/vpcs/#{instance.vpc.try(:vid)}"}= instance.vpc.try(:name)
-        %td= instance.subnet.try(:name)
         %td
           %span.label{:class => "#{class_for_state(instance.state)}"}
-            = instance.state
+            = instance.private_ip_address
+          - unless instance.public_ip_address.nil?
+            %span.label{:class => "#{class_for_state(instance.state)}"}
+              = instance.public_ip_address
+        %td
+          %a{:href => "/vpcs/#{instance.vpc.try(:vid)}"}= instance.vpc.try(:name)
+          \|
+          = instance.subnet.try(:name)
