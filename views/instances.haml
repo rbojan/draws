@@ -30,8 +30,8 @@
         %td= instance.private_ip_address
         %td= instance.public_ip_address
         %td
-          %a{:href => "/vpcs##{instance.vpc.vid}"}= instance.vpc.name
-        %td= instance.subnet.name
+          %a{:href => "/vpcs/#{instance.vpc.try(:vid)}"}= instance.vpc.try(:name)
+        %td= instance.subnet.try(:name)
         %td
           %span.label{:class => "#{class_for_state(instance.state)}"}
             = instance.state
