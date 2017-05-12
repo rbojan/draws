@@ -8,9 +8,9 @@
 %h5
   = resource_name(@instance.name)
   in
-  %a{:href => "/vpcs/#{@instance.vpc.try(:vid)}"}= @instance.vpc.name
+  %a{:href => "/vpcs/#{@instance.vpc.try(:vid)}"}= @instance.vpc.try(:name)
   \|
-  %a{:href => "/vpcs/#{@instance.vpc.try(:vid)}"}= @instance.subnet.name
+  %a{:href => "/vpcs/#{@instance.vpc.try(:vid)}"}= @instance.subnet.try(:name)
 %p
   %span.label.primary
     = @instance.vpc_id
