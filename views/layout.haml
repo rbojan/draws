@@ -13,12 +13,13 @@
       .title-bar-title Menu
     #draws-menu.top-bar
       .top-bar-left
+      .menu-centered
         %ul.dropdown.menu{"data-dropdown-menu" => ""}
-          %li.menu-text draws
           %li
             %a{:href => "/"} VPCs
           %li
             %a{:href => "/instances"} Instances
+          %li.menu-text draws
           %li
             %a{:href => "#"} Help
           %li
