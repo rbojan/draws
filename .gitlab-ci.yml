@@ -1,0 +1,37 @@
+image: docker:17.06
+services:
+  - docker:17.06-dind
+
+stages:
+  - build
+  - test
+  - release
+
+before_script:
+  - uname -a
+  - pwd && ls -la && env
+  - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+
+variables:
+  DOCKER_TEST_IMAGE: $CI_REGISTRY/$CI_PROJECT_PATH:$CI_COMMIT_REF_SLUG
+  DOCKER_RELEASE_IMAGE: $CI_REGISTRY/$CI_PROJECT_PATH:latest
+
+build:
+  stage: build
+  script:
+    - docker build -t $DOCKER_TEST_IMAGE .
+    - docker push $DOCKER_TEST_IMAGE
+
+test:
+  stage: test
+  script:
+    - docker run $DOCKER_TEST_IMAGE ruby -v
+
+release-image:
+  stage: release
+  script:
+    - docker pull $DOCKER_TEST_IMAGE
+    - docker tag $DOCKER_TEST_IMAGE $DOCKER_RELEASE_IMAGE
+    - docker push $DOCKER_RELEASE_IMAGE
+  only:
+    - master
