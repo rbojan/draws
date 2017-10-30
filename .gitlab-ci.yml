@@ -33,5 +33,8 @@ release-image:
     - docker pull $DOCKER_TEST_IMAGE
     - docker tag $DOCKER_TEST_IMAGE $DOCKER_RELEASE_IMAGE
     - docker push $DOCKER_RELEASE_IMAGE
+    - export DOCKER_RELEASE_IMAGE_WITH_VERSION=$CI_REGISTRY/$CI_PROJECT_PATH:$(<version)
+    - docker tag $DOCKER_TEST_IMAGE $DOCKER_RELEASE_IMAGE_WITH_VERSION
+    - docker push $DOCKER_RELEASE_IMAGE_WITH_VERSION
   only:
     - master
