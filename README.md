@@ -12,11 +12,9 @@ AWS Resources are pulled using the `/reload` endpoint and stored in a sqlite dat
 
 https://github.com/aws/aws-sdk-ruby#configuration
 
-
     ruby app.rb -p 3000
 
 Visit http://localhost:3000 or http://localhost:3000/reload if you want to refresh the AWS Resources cache.
-
 
 ## Features
 
@@ -77,7 +75,6 @@ Dokku Dockerfile Deployment
 
 http://draws.dokku-server.tld
 
-
 ## Development environment
 
 ### Start
@@ -92,3 +89,7 @@ http://draws.dokku-server.tld
 
     cat sample_data/schema.sql | sqlite3 cache-db.sqlite
     cat sample_data/dump.sql | sqlite3 cache-db.sqlite
+
+## Maintainer
+
+[bro](https://github.com/rbojan)
