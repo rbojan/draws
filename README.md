@@ -17,35 +17,36 @@ https://github.com/aws/aws-sdk-ruby#configuration
 Visit http://localhost:3000 or http://localhost:3000/reload if you want to refresh the AWS Resources cache.
 
 ## Features
-
-tl;dr
   
-    # Reload AWS resources: Flush db and pull AWS Resources into cache
-    get '/reload'
+* Reload AWS resources: flush db and pull AWS Resources into cache
+    `get '/reload'`
 
-    # VPCs List
-    get '/'
+ * VPCs List
+    `get '/'`
 
-    # VPCs & Subnets including Instances Show
-    get '/vpcs/:vid'
+* VPCs & Subnets including Instances Show
+    `get '/vpcs/:vid'`
 
-    # Instances List
-    get '/instances'
+* Instances List
+    `get '/instances'`
 
-    # Instance Show
-    get 'instances/:iid'
+* Instance Show
+    `get 'instances/:iid'`
 
-    # tbd.
+_to be defined_
+
     get  '/regions/:rid/instances/:iid'
     get  '/regions/:rid/vpc/:vid/instances/:iid'
     get  '/regions/:rid/vpc/:vid/subnets/:sid/instances/:iid'
 
-    # tbd.: possible?
+_to be defined if possible?_
+
     namespace '/regions/:rid/
       get  '/instances/:iid/:attribute'
       post '/instances/:iid/:rpc_name'
-    
-    # tbd.: needed?
+
+_to be defined if needed?_
+
     namespace '/admin'
 
 ## Deployment
