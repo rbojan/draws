@@ -58,10 +58,12 @@ Deployment instructions using various platforms.
 Dokku Dockerfile Deployment
 
 1. Local
+
     a. `git remote add dokku dokku@<dokku-server>:draws`
     b. `git push dokku master`
 
 2. Remote dokku server
+
     a. Automatically retrieve and install Lets Encrypt certificates
     `dokku letsencrypt draws`
 
@@ -75,6 +77,7 @@ Dokku Dockerfile Deployment
     `dokku config:set draws AWS_REGION=<aws-region>`
 
 3. Open in browser
+
     http://draws.dokku-server.tld
 
 ## Development environment
