@@ -21,7 +21,7 @@ Visit http://localhost:3000 or http://localhost:3000/reload if you want to refre
 * Reload AWS resources: flush db and pull AWS Resources into cache
     `get '/reload'`
 
- * VPCs List
+* VPCs List
     `get '/'`
 
 * VPCs & Subnets including Instances Show
