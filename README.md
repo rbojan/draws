@@ -56,24 +56,25 @@ Deployment instructions using various platforms.
 
 Dokku Dockerfile Deployment
 
-    # Local
-    git remote add dokku dokku@<dokku-server>:draws
-    git push dokku master
+1. Local
+    a. `git remote add dokku dokku@<dokku-server>:draws`
+    b. `git push dokku master`
 
-    # Remote dokku server
-    # Automatically retrieve and install Lets Encrypt certificates
-    dokku letsencrypt draws
+2. Remote dokku server
+    a. Automatically retrieve and install Lets Encrypt certificates
+    `dokku letsencrypt draws`
 
-    # HTTP Basic Auth over TLS (Lets Encrypt) for Security
-    dokku http-auth:on draws <your-name> <your-secure-password>
+    b. HTTP Basic Auth over TLS (Lets Encrypt) for Security
+    `dokku http-auth:on draws <your-name> <your-secure-password>`
 
-    # AWS Credentials
-    dokku config:set draws AWS_ACCESS_KEY_ID=XXX AWS_SECRET_ACCESS_KEY=XXX
+    c. AWS Credentials
+    `dokku config:set draws AWS_ACCESS_KEY_ID=XXX AWS_SECRET_ACCESS_KEY=XXX`
 
-    # Optional: AWS Region (default: 'eu-central-1')
-    dokku config:set draws AWS_REGION=<aws-region>
+    d. Optional: AWS Region (default: 'eu-central-1')
+    `dokku config:set draws AWS_REGION=<aws-region>`
 
-http://draws.dokku-server.tld
+3. Open in browser
+    http://draws.dokku-server.tld
 
 ## Development environment
 
