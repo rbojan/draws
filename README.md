@@ -60,6 +60,7 @@ Dokku Dockerfile Deployment
 1. Local
 
     a. `git remote add dokku dokku@<dokku-server>:draws`
+
     b. `git push dokku master`
 
 2. Remote dokku server
