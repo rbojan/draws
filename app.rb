@@ -31,10 +31,11 @@ helpers do
   end
 end
 
-# Basic Authentication
-#use Rack::Auth::Basic do |user, password|
-#  true
-#end
+if ENV['DRAWS_ENABLE_BASIC_AUTH'] == 'true'
+  use Rack::Auth::Basic do |username, password|
+    username == ENV['DRAWS_USERNAME'] && username == ENV['DRAWS_USER_PASSWORD']
+  end
+end
 
 # Endpoints
 
