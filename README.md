@@ -19,18 +19,23 @@ Visit http://localhost:3000 or http://localhost:3000/reload if you want to refre
 ## Features
   
 * Reload AWS resources: flush db and pull AWS Resources into cache
+    
     `get '/reload'`
 
 * VPCs List
+    
     `get '/'`
 
 * VPCs & Subnets including Instances Show
+    
     `get '/vpcs/:vid'`
 
 * Instances List
+    
     `get '/instances'`
 
 * Instance Show
+    
     `get 'instances/:iid'`
 
 _to be defined_
@@ -66,20 +71,30 @@ Dokku Dockerfile Deployment
 2. Remote dokku server
 
     a. Automatically retrieve and install Lets Encrypt certificates
+    
     `dokku letsencrypt draws`
 
-    b. HTTP Basic Auth over TLS (Lets Encrypt) for Security
-    `dokku http-auth:on draws <your-name> <your-secure-password>`
-
-    c. AWS Credentials
+    b. AWS Credentials
+    
     `dokku config:set draws AWS_ACCESS_KEY_ID=XXX AWS_SECRET_ACCESS_KEY=XXX`
 
-    d. Optional: AWS Region (default: 'eu-central-1')
+    c. Optional: AWS Region (default: 'eu-central-1')
+    
     `dokku config:set draws AWS_REGION=<aws-region>`
+
+    d. Optional: Enable HTTP Basic auth
+
+    `dokku config:set draws DRAWS_ENABLE_BASIC_AUTH=true DRAWS_USERNAME=admin DRAWS_USER_PASSWORD=XXX`
 
 3. Open in browser
 
     http://draws.dokku-server.tld
+
+### Kubernetes 
+
+You have to build the image and make it accessible in a Docker registry.
+
+Further instructions including Helm Chart coming soon.
 
 ## Development environment
 
