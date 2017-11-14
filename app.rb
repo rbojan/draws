@@ -33,7 +33,7 @@ end
 
 if ENV['DRAWS_ENABLE_BASIC_AUTH'] == 'true'
   use Rack::Auth::Basic do |username, password|
-    username == ENV['DRAWS_USERNAME'] && username == ENV['DRAWS_USER_PASSWORD']
+    username == ENV['DRAWS_USERNAME'] && password == ENV['DRAWS_USER_PASSWORD']
   end
 end
 
