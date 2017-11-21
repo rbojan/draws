@@ -1,6 +1,11 @@
 $(document).foundation()
 
 $(document).ready(function() {
+
+  $('#instances').DataTable({
+    "pageLength": 50
+  });
+
   $('#user_change_password').submit(function() {
     var new_password = $.trim($('input[name="new_password"]').val())
     var new_password_confirmation = $.trim($('input[name="new_password_confirmation"]').val())
