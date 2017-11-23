@@ -17,7 +17,10 @@
   %span.label.secondary
     = @instance.iid
   %span.label{:class => "#{class_for_state(@instance.state)}"}
-    = @instance.state
+    = @instance.private_ip_address
+  - unless @instance.public_ip_address.nil?
+    %span.label{:class => "#{class_for_state(@instance.state)}"}
+      = @instance.public_ip_address
 
 %pre.callout
   = JSON.pretty_generate(JSON.load(@instance.resource_json))
