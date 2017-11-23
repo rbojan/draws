@@ -10,7 +10,6 @@
       %th
         Name
       %th
-        %span.label.secondary Instance ID
         %span.label.secondary Type
       %th
         %span.label.secondary Private IP
@@ -22,11 +21,7 @@
         %td
           %a{:href => "/instances/#{instance.iid}"}
             = resource_name(instance.name)
-          %br
-
         %td
-          %span.label.secondary
-            = instance.iid
           %span.label.secondary
             = instance.instance_type
         %td
