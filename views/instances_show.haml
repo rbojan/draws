@@ -16,6 +16,8 @@
     = @instance.subnet_id
   %span.label.secondary
     = @instance.iid
+  %span.label.secondary
+    = @instance.instance_type
   %span.label{:class => "#{class_for_state(@instance.state)}"}
     = @instance.private_ip_address
   - unless @instance.public_ip_address.nil?
