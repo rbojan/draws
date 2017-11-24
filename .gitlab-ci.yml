@@ -1,6 +1,4 @@
-image: docker:17.06
-services:
-  - docker:17.06-dind
+image: docker:17.06-dind
 
 stages:
   - build
@@ -8,8 +6,7 @@ stages:
   - release
 
 before_script:
-  - uname -a
-  - pwd && ls -la && env
+  - uname -a && pwd && ls -la
   - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
 
 variables:
