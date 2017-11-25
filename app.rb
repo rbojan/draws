@@ -31,7 +31,7 @@ helpers do
   end
 
   def tag_filter
-    ENV['DRAWS_TAG_FILTER']||= 'Project,Stage'
+    ENV['DRAWS_TAG_FILTER'] ||= 'Project,Stage'
     ENV['DRAWS_TAG_FILTER'].delete(' ').split(',')
   end
 end
