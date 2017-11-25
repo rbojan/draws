@@ -53,22 +53,6 @@ Visit http://localhost:3000 or http://localhost:3000/reload if you want to refre
     
     `get 'instances/:iid'`
 
-_to be defined_
-
-    get  '/regions/:rid/instances/:iid'
-    get  '/regions/:rid/vpc/:vid/instances/:iid'
-    get  '/regions/:rid/vpc/:vid/subnets/:sid/instances/:iid'
-
-_to be defined if possible?_
-
-    namespace '/regions/:rid/
-      get  '/instances/:iid/:attribute'
-      post '/instances/:iid/:rpc_name'
-
-_to be defined if needed?_
-
-    namespace '/admin'
-
 ## Deployment
 
 Deployment instructions using various platforms.
