@@ -3,11 +3,24 @@ $(document).foundation()
 $(document).ready(function() {
 
   $('#instances').DataTable({
-    "pageLength": 50
+    "mark": true,
+    "pageLength": 50,
+    "columnDefs": [ {
+      "targets"  : 'no-sort',
+      "orderable": false,
+    }]
   });
 
   $("a#toggle-tags").click(function(){
-    $(this).parent().children(".label.hidden").toggle();
+    $(this).parent().parent().children(".label.tag.other").toggle();
+  });
+
+  $("a#show-all-tags").click(function(){
+    $(".label.tag.other").show();
+  });
+
+  $("a#show-filtered-tags").click(function(){
+    $(".label.tag.other").hide();
   });
 
   $('#user_change_password').submit(function() {

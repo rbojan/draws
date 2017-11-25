@@ -15,7 +15,13 @@
         %span.label.secondary Private IP
         %span.label.secondary Public IP
       %th vpc | Subnet Name
-      %th Tags
+      %th.no-sort
+        Tags
+        %span.label{:style => "background-color: #cccccc;"}
+          %a#show-all-tags All
+        %span.label{:style => "background-color: #cccccc;"}
+          %a#show-filtered-tags Filtered
+
   %tbody
     - @instances.each do |instance|
       %tr
@@ -38,9 +44,10 @@
         %td
           - JSON.parse(instance.resource_json)['tags'].sort_by { |h| h['key'] }.each do |tag|
             - if tag_filter.include? tag['key']
-              %span.label{:style => "background-color: #929292"}
+              %span.label.tag{:style => "background-color: #929292"}
                 = "#{tag['key']}=#{tag['value']}"
             - else
-              %span.label.hidden{:style => "background-color: #aaaaaa; display:none"}
+              %span.label.tag.other{:style => "background-color: #aaaaaa; display:none"}
                 = "#{tag['key']}=#{tag['value']}"
-          %a#toggle-tags Show more/less
+          %span.label{:style => "background-color: #cccccc;"}
+            %a#toggle-tags ...
