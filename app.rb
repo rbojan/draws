@@ -29,6 +29,11 @@ helpers do
   def resource_name(name)
     name.nil? ? "no-resource-name-given" : name
   end
+
+  def tag_filter
+    ENV['DRAWS_TAG_FILTER']||= 'Project,Stage'
+    ENV['DRAWS_TAG_FILTER'].delete(' ').split(',')
+  end
 end
 
 if ENV['DRAWS_ENABLE_BASIC_AUTH'] == 'true'

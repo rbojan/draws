@@ -15,6 +15,7 @@
         %span.label.secondary Private IP
         %span.label.secondary Public IP
       %th vpc | Subnet Name
+      %th Tags
   %tbody
     - @instances.each do |instance|
       %tr
@@ -34,3 +35,12 @@
           %a{:href => "/vpcs/#{instance.vpc.try(:vid)}"}= instance.vpc.try(:name)
           \|
           = instance.subnet.try(:name)
+        %td
+          - JSON.parse(instance.resource_json)['tags'].sort_by { |h| h['key'] }.each do |tag|
+            - if tag_filter.include? tag['key']
+              %span.label{:style => "background-color: #929292"}
+                = "#{tag['key']}=#{tag['value']}"
+            - else
+              %span.label.hidden{:style => "background-color: #aaaaaa; display:none"}
+                = "#{tag['key']}=#{tag['value']}"
+          %a#toggle-tags Show more/less

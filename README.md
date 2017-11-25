@@ -6,11 +6,26 @@ This application aims to provide a better User Experience in terms of Overview, 
 
 AWS Resources are pulled using the `/reload` endpoint and stored in a sqlite database for caching purposes. 
 
-## Configuration & Application startup
+## Configuration
+
+The application is configured with ENVIRONMENT variables.
 
 > You need to configure :credentials and a :region to make API calls. It is recommended that you provide these via your environment. This makes it easier to rotate credentials and it keeps your secrets out of source control.
 
 https://github.com/aws/aws-sdk-ruby#configuration
+
+    AWS_REGION=eu-central-1
+    AWS_ACCESS_KEY_ID=XXX
+    AWS_SECRET_ACCESS_KEY=XXX
+
+    DRAWS_ENABLE_BASIC_AUTH=[true|false]
+    DRAWS_USERNAME=draws
+    DRAWS_USER_PASSWORD=secure_password_please
+    DRAWS_TAG_FILTER=Project,Stage
+
+DRAWS_TAG_FILTER is used in the instance overview to save some space in the table if you have many Tags on the Ressources. Don't bother: you can search on all Tags and make them visible ;)
+
+## Run locally
 
     ruby app.rb -p 3000
 
@@ -85,6 +100,10 @@ Dokku Dockerfile Deployment
     d. Optional: Enable HTTP Basic auth
 
     `dokku config:set draws DRAWS_ENABLE_BASIC_AUTH=true DRAWS_USERNAME=admin DRAWS_USER_PASSWORD=XXX`
+
+    e. Optional: Use Tag filter
+
+    `dokku config:set draws DRAWS_TAG_FILTER=Owner,Stage,Project`
 
 3. Open in browser
 

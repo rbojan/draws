@@ -6,6 +6,10 @@ $(document).ready(function() {
     "pageLength": 50
   });
 
+  $("a#toggle-tags").click(function(){
+    $(this).parent().children(".label.hidden").toggle();
+  });
+
   $('#user_change_password').submit(function() {
     var new_password = $.trim($('input[name="new_password"]').val())
     var new_password_confirmation = $.trim($('input[name="new_password_confirmation"]').val())
