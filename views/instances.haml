@@ -7,13 +7,9 @@
 %table.hover#instances
   %thead
     %tr
-      %th
-        Name
-      %th
-        %span.label.secondary Type
-      %th
-        %span.label.secondary Private IP
-        %span.label.secondary Public IP
+      %th Name
+      %th Type
+      %th IPs
       %th vpc | Subnet Name
       %th.no-sort
         Tags
@@ -47,7 +43,7 @@
               %span.label.tag{:style => "background-color: #929292"}
                 = "#{tag['key']}=#{tag['value']}"
             - else
-              %span.label.tag.other{:style => "background-color: #aaaaaa; display:none"}
+              %span.label.tag.other{:style => "background-color: #aaaaaa; display:none;"}
                 = "#{tag['key']}=#{tag['value']}"
-          %span.label{:style => "background-color: #cccccc;"}
-            %a#toggle-tags ...
+          %span.label.toggle-link{:style => "background-color: #cccccc;"}
+            %a#toggle-tags All
