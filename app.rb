@@ -30,6 +30,14 @@ helpers do
     name.nil? ? "no-resource-name-given" : name
   end
 
+  def tags(resource_json)
+    if !JSON.parse(resource_json).key?('tags')
+      return []
+    else
+      JSON.parse(resource_json)['tags'].sort_by { |h| h['key'] }
+    end
+  end
+
   def tag_filter
     ENV['DRAWS_TAG_FILTER'] ||= 'Project,Stage'
     ENV['DRAWS_TAG_FILTER'].delete(' ').split(',')

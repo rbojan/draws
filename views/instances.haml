@@ -38,7 +38,7 @@
           \|
           = instance.subnet.try(:name)
         %td
-          - JSON.parse(instance.resource_json)['tags'].sort_by { |h| h['key'] }.each do |tag|
+          - tags(instance.resource_json).each do |tag|
             - if tag_filter.include? tag['key']
               %span.label.tag{:style => "background-color: #929292"}
                 = "#{tag['key']}=#{tag['value']}"
