@@ -7,6 +7,7 @@
     %title draws
     %link{:href => "/css/foundation.min.css", :rel => "stylesheet"}
     %link{:href => "/css/dataTables.foundation.min.css", :rel => "stylesheet"}
+    %link{:href => "/css/foundation-icons.css", :rel => "stylesheet"}
     %link{:href => "/css/app.css", :rel => "stylesheet"}
   %body
     .title-bar{"data-hide-for" => "medium", "data-responsive-toggle" => "draws-menu"}
@@ -17,14 +18,22 @@
       .menu-centered
         %ul.dropdown.menu{"data-dropdown-menu" => ""}
           %li
-            %a{:href => "/"} VPCs
+            %a{:href => "/"}
+              %i.fi-cloud
+              %span VPCs
           %li
-            %a{:href => "/instances"} Instances
+            %a{:href => "/instances"}
+              %i.fi-list
+              %span Instances
           %li.menu-text draws
           %li
-            %a{:href => "#"} Help
+            %a{:href => "#"}
+              %i.fi-lightbulb
+              %span Help
           %li
-            %a{:href => "/reload"} Reload
+            %a{:href => "/reload"}
+              %i.fi-refresh
+              %span Reload
     .row
       .large-12.columns
         %p
