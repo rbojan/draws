@@ -56,7 +56,7 @@
                     Instances
                     %span.badge.secondary= subnet.instances.count
               %tbody
-                - subnet.instances.each do |instance|
+                - subnet.instances(:order => 'name').each do |instance|
                   %tr
                     %td
                       %a{:href => "/instances/#{instance.iid}"}= resource_name(instance.name)
