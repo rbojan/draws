@@ -54,7 +54,7 @@ end
 
 # '/' ==> /vpcs'
 get '/' do
-  @vpcs = Vpc.all(:order => [:vid.desc])
+  @vpcs = Vpc.all(:order => [:name.asc])
   haml :vpcs
 end
 
@@ -66,7 +66,7 @@ get '/vpcs/:vid' do
 end
 
 get '/instances' do
-  @instances = Instance.all(:order => [:vpc_id.desc])
+  @instances = Instance.all(:order => [:name.asc])
   haml :instances
 end
 
