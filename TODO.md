@@ -1,3 +1,5 @@
+* Switch to foundation 6.4.x and Flexbox (check DataTables)
+
 _to be defined_
 
     get  '/regions/:rid/instances/:iid'
