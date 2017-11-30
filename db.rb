@@ -69,6 +69,7 @@ class DbInstance
   property :name, String
   property :db_instance_class, String
   property :address, String
+  property :engine, String
   property :vpc_id, String
   property :availability_zone, String
   property :secondary_availability_zone, String
@@ -152,6 +153,7 @@ def reload_aws_resources
     DbInstance.create dbiid: db_instance.dbi_resource_id,
                       name: db_instance.db_instance_identifier,
                       vpc_id: db_instance.db_subnet_group.vpc_id,
+                      engine: db_instance.engine,
                       db_instance_class: db_instance.db_instance_class,
                       address:  db_instance.endpoint.address,
                       availability_zone: db_instance.availability_zone,

@@ -11,6 +11,15 @@ $(document).ready(function() {
     }]
   });
 
+  $('#db-instances').DataTable({
+    'mark': true,
+    'pageLength': 10,
+    'columnDefs': [ {
+      'targets'  : 'no-sort',
+      'orderable': false,
+    }]
+  });
+
   $('a#toggle-tags').click(function(){
     $(this).parent().parent().children('.label.tag.other').toggle();
     if($(this).text() == 'All'){
