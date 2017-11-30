@@ -69,8 +69,9 @@
 
   %h5 RDS Instance(s)
   - @db_instances.each do |db_instance|
-    %span.label.secondary= db_instance.db_instance_class
-    %span= db_instance.address
+    %p
+      %span.label.secondary= db_instance.db_instance_class
+      %span= db_instance.address
   - if @db_instances.empty?
     %p
       %i No RDS instances in VPC.
