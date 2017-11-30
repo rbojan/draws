@@ -81,3 +81,8 @@ get '/reload' do
   reload_aws_resources
   redirect '/'
 end
+
+get '/help' do
+  @version = File.open('version', &:gets)
+  haml :help
+end

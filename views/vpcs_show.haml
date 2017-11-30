@@ -19,13 +19,13 @@
       = @vpc.state
     %span.label.warning
       = @subnets.count
-      Subnet(s)
+      Subnets
     %span.label.secondary
       = @vpc.instances.count
-      Instance(s)
+      Instances
     %span.label.secondary
       = @vpc.db_instances.count
-      RDS Instance(s)
+      RDS Instances
   %p
     = @vpc.cidr_block
 
@@ -66,27 +66,34 @@
                       %span.label.secondary= instance.instance_type
                       %span.label{:class => "#{class_for_state(instance.state)}"}
                         = instance.private_ip_address
-                      - if !instance.public_ip_address.nil?
+                      - unless instance.public_ip_address.nil?
                         %span.label{:class => "#{class_for_state(instance.state)}"}
                           = instance.public_ip_address
 
   - if @subnets.empty?
     %p
       %i No subnets in VPC.
-  %h5 RDS Instance(s)
-  %table.hover#db-instances
-    %thead
-      %tr
-        %th Type
-        %th Address
-        %th Engine
-        %th Availability zones
-    %tbody
-      - @db_instances.each do |db_instance|
+  - if @db_instances.any?
+    %p
+      %ul.menu
+        %li
+          = @db_instances.count
+          RDS Instances
+    %table.hover#db-instances
+      %thead
         %tr
-          %td= db_instance.db_instance_class
-          %td= db_instance.address
-          %td= db_instance.engine
-          %td
-            %span.label.warning= db_instance.availability_zone
-            %span.label.warning= db_instance.secondary_availability_zone
+          %th Type
+          %th Address
+          %th Engine
+          %th Availability zones
+      %tbody
+        - @db_instances.each do |db_instance|
+          %tr
+            %td
+              %span.label.secondary= db_instance.db_instance_class
+            %td= db_instance.address
+            %td= db_instance.engine
+            %td
+              %span.label.warning= db_instance.availability_zone
+              - unless db_instance.secondary_availability_zone.nil?
+                %span.label.warning= db_instance.secondary_availability_zone

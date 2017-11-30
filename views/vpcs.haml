@@ -35,13 +35,13 @@
             = vpc.state
           %span.label.warning
             = vpc.subnets.count
-            Subnet(s)
+            Subnets
           %span.label.secondary
             = vpc.instances.count
-            Instance(s)
+            Instances
           %span.label.secondary
             = vpc.db_instances.count
-            RDS Instance(s)
+            RDS Instances
         %p
           = vpc.cidr_block
 
