@@ -19,10 +19,13 @@
       = @vpc.state
     %span.label.warning
       = @subnets.count
-      Subnets
+      Subnet(s)
     %span.label.secondary
       = @vpc.instances.count
-      Instances
+      Instance(s)
+    %span.label.secondary
+      = @vpc.db_instances.count
+      RDS Instance(s)
   %p
     = @vpc.cidr_block
 
