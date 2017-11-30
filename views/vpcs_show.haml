@@ -60,8 +60,17 @@
                   %tr
                     %td
                       %a{:href => "/instances/#{instance.iid}"}= resource_name(instance.name)
+                      %span.label.secondary= instance.instance_type
                       %span.label{:class => "#{class_for_state(instance.state)}"}
                         = instance.private_ip_address
                       - if !instance.public_ip_address.nil?
                         %span.label{:class => "#{class_for_state(instance.state)}"}
                           = instance.public_ip_address
+
+  %h6 RDS Instance(s)
+  %ul
+    - @db_instances.each do |db_instance|
+      %li
+        %span= db_instance.name
+        %span.label.secondary= db_instance.db_instance_class
+        %span.label.secondary= db_instance.address
