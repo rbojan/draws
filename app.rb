@@ -62,7 +62,7 @@ get '/vpcs/:vid' do
   @vpc = Vpc.first(:vid => params[:vid])
   halt 404 unless @vpc
   @subnets = Subnet.all(:order => 'name', :vpc_id => params[:vid])
-  @db_instances = DbInstance.all(:order => 'name', :vpc_id => params[:vid])
+  @db_instances = DbInstance.all(:order => 'db_instance_class', :vpc_id => params[:vid])
   haml :vpcs_show
 end
 
