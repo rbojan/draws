@@ -42,6 +42,10 @@ helpers do
     ENV['DRAWS_TAG_FILTER'] ||= 'Project,Stage'
     ENV['DRAWS_TAG_FILTER'].delete(' ').split(',')
   end
+
+  def aws_region
+    ENV['AWS_REGION'] ||= 'eu-central-1'
+  end
 end
 
 if ENV['DRAWS_ENABLE_BASIC_AUTH'] == 'true'

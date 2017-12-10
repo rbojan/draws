@@ -38,6 +38,9 @@
               = subnet.name
               %small
                 %a{"data-open" => "json-#{subnet.sid}"} resource.json
+              %small
+                %a{:href => "https://#{aws_region}.console.aws.amazon.com/vpc/home?region=#{aws_region}#subnets:filter=#{subnet.sid}", :target => "_blank"}
+                  %i.fi-link
             %span.label.warning
               = subnet.sid
             %span.label.warning
@@ -63,6 +66,8 @@
                   %tr
                     %td
                       %a{:href => "/instances/#{instance.iid}"}= resource_name(instance.name)
+                      %a{:href => "https://#{aws_region}.console.aws.amazon.com/ec2/v2/home?region=#{aws_region}#Instances:instanceId=#{instance.iid};sort=instanceState", :target => "_blank"}
+                        %i.fi-link
                       %span.label.secondary= instance.instance_type
                       %span.label{:class => "#{class_for_state(instance.state)}"}
                         = instance.private_ip_address
@@ -91,7 +96,11 @@
           %tr
             %td
               %span.label.secondary= db_instance.db_instance_class
-            %td= db_instance.address
+            %td
+              = db_instance.address
+              %a{:href => "https://#{aws_region}.console.aws.amazon.com/rds/home?region=#{aws_region}#dbinstance:id=#{db_instance.name}", :target => "_blank"}
+                %i.fi-link
+
             %td= db_instance.engine
             %td
               %span.label.warning= db_instance.availability_zone

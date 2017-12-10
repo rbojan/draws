@@ -10,7 +10,7 @@
       %th Name
       %th Type
       %th IPs
-      %th vpc | Subnet Name
+      %th VPC | Subnet Name
       %th.no-sort
         Tags
         %span.label{:style => "background-color: #cccccc;"}
@@ -24,6 +24,8 @@
         %td
           %a{:href => "/instances/#{instance.iid}"}
             = resource_name(instance.name)
+          %a{:href => "https://#{aws_region}.console.aws.amazon.com/ec2/v2/home?region=#{aws_region}#Instances:instanceId=#{instance.iid};sort=instanceState", :target => "_blank"}
+            %i.fi-link
         %td
           %span.label.secondary
             = instance.instance_type
