@@ -24,7 +24,7 @@
               %span{"aria-hidden" => "true"} ×
             %pre= JSON.pretty_generate(JSON.load(vpc.resource_json))
           %small
-            %a{:href => "https://#{ENV['AWS_REGION']}.console.aws.amazon.com/vpc/home?region=#{ENV['AWS_REGION']}#vpcs:filter=#{vpc.vid}", :target => "_blank"}
+            %a{:href => "https://#{aws_region}.console.aws.amazon.com/vpc/home?region=#{aws_region}#vpcs:filter=#{vpc.vid}", :target => "_blank"}
               %i.fi-link
 
         %p

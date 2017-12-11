@@ -83,10 +83,12 @@ end
 
 get '/reload' do
   reload_aws_resources
+  File.write('last_reload', Time.now)
   redirect '/'
 end
 
 get '/help' do
   @version = File.open('version', &:gets)
+  @last_reload = File.exist?('last_reload') ? File.open('last_reload', &:gets) : 'No Resources loaded'
   haml :help
 end

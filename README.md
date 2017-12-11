@@ -1,6 +1,6 @@
 # draws
 
-[Sinatra](http://www.sinatrarb.com/) web application for accessing and reading [AWS Resources](//missing_link) using [aws-sdk for ruby](//github.com/aws/aws-sdk-ruby).
+Web application for accessing and reading AWS Resources using [Sinatra](http://www.sinatrarb.com/) and [aws-sdk for ruby](https://github.com/aws/aws-sdk-ruby).
 
 This application aims to provide a better User Experience in terms of Overview, Accessibility etc. for AWS Resources like VPCs, Subnets, Instances etc.
 
@@ -10,20 +10,32 @@ AWS Resources are pulled using the `/reload` endpoint and stored in a sqlite dat
 
 The application is configured with ENVIRONMENT variables.
 
-> You need to configure :credentials and a :region to make API calls. It is recommended that you provide these via your environment. This makes it easier to rotate credentials and it keeps your secrets out of source control.
+One can create a `draws.env` file with the ENVIRONMENT variables listed below and export them using
 
-https://github.com/aws/aws-sdk-ruby#configuration
+    vi draws.env
+    export $(cat draws.env | xargs)
+
+### AWS Credentials
 
     AWS_REGION=eu-central-1
     AWS_ACCESS_KEY_ID=XXX
     AWS_SECRET_ACCESS_KEY=XXX
 
+> You need to configure :credentials and a :region to make API calls. It is recommended that you provide these via your environment. This makes it easier to rotate credentials and it keeps your secrets out of source control.
+
+https://github.com/aws/aws-sdk-ruby#configuration
+
+### draws Configuration (optional)
+
+draws can be configured optionally to use HTTP Basic Auth (default off).
+
     DRAWS_ENABLE_BASIC_AUTH=[true|false]
     DRAWS_USERNAME=draws
     DRAWS_USER_PASSWORD=secure_password_please
+    
     DRAWS_TAG_FILTER=Project,Stage
 
-DRAWS_TAG_FILTER is used in the instance overview to save some space in the table if you have many Tags on the Ressources. Don't bother: you can search on all Tags and make them visible ;)
+DRAWS_TAG_FILTER (default: Project,Stage) is used in the instance overview to save some space in the table if you have many Tags on the Resources. Don't bother: you can search on all Tags and make them visible ;)
 
 ## Run locally
 
