@@ -4,14 +4,12 @@
       %a{:href => "/"} VPCs
 
 .callout
+  .reveal{:id => "json-#{@vpc.vid}", "data-reveal" => ""}
+    %button.close-button{"aria-label" => "Close modal", "data-close" => "", :type => "button"}
+      %span{"aria-hidden" => "true"} ×
+    %pre= JSON.pretty_generate(JSON.load(@vpc.resource_json))
   %h4
     = @vpc.name
-    %small
-      %a{"data-open" => "json-#{@vpc.vid}"} resource.json
-    .reveal{:id => "json-#{@vpc.vid}", "data-reveal" => ""}
-      %button.close-button{"aria-label" => "Close modal", "data-close" => "", :type => "button"}
-        %span{"aria-hidden" => "true"} ×
-      %pre= JSON.pretty_generate(JSON.load(@vpc.resource_json))
   %p
     %span.label
       = @vpc.vid
@@ -28,6 +26,11 @@
       RDS Instances
   %p
     = @vpc.cidr_block
+  %p
+    %a.button.hollow{"data-open" => "json-#{@vpc.vid}"} resource.json
+    %a.button.hollow{:href => "https://#{aws_region}.console.aws.amazon.com/vpc/home?region=#{aws_region}#vpcs:filter=#{@vpc.vid}", :target => "_blank"}
+      %i.fi-link
+      AWS Console
 
   .row.small-up-1.medium-up-2.large-up-3
     - @subnets.each do |subnet|
@@ -80,10 +83,9 @@
       %i No subnets in VPC.
   - if @db_instances.any?
     %p
-      %ul.menu
-        %li
-          = @db_instances.count
-          RDS Instances
+      %span.label.secondary
+        = @db_instances.count
+        RDS Instances
     %table.hover#db-instances
       %thead
         %tr
