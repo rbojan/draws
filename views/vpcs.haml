@@ -15,18 +15,12 @@
   - @vpcs.each do |vpc|
     .column
       .callout
+        .reveal{:id => "json-#{vpc.vid}", "data-reveal" => ""}
+          %button.close-button{"aria-label" => "Close modal", "data-close" => "", :type => "butt"}
+            %span{"aria-hidden" => "true"} ×
+          %pre= JSON.pretty_generate(JSON.load(vpc.resource_json))
         %h5
           %a{:href => "/vpcs/#{vpc.vid}"}= vpc.name
-          %small
-            %a{"data-open" => "json-#{vpc.vid}"} resource.json
-          .reveal{:id => "json-#{vpc.vid}", "data-reveal" => ""}
-            %button.close-button{"aria-label" => "Close modal", "data-close" => "", :type => "button"}
-              %span{"aria-hidden" => "true"} ×
-            %pre= JSON.pretty_generate(JSON.load(vpc.resource_json))
-          %small
-            %a{:href => "https://#{aws_region}.console.aws.amazon.com/vpc/home?region=#{aws_region}#vpcs:filter=#{vpc.vid}", :target => "_blank"}
-              %i.fi-link
-
         %p
           %span.label
             = vpc.vid
@@ -43,5 +37,10 @@
             RDS Instances
         %p
           = vpc.cidr_block
+        %p
+          %a.button.hollow{"data-open" => "json-#{vpc.vid}"} resource.json
+          %a.button.hollow{:href => "https://#{aws_region}.console.aws.amazon.com/vpc/home?region=#{aws_region}#vpcs:filter=#{vpc.vid}", :target => "_blank"}
+            %i.fi-link
+            AWS Console
 
 
