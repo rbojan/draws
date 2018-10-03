@@ -4,7 +4,8 @@ require 'sinatra'
 # https://github.com/sinatra/sinatra/tree/master/sinatra-contrib#classic-style
 require 'sinatra/contrib'
 require 'sinatra/reloader' if development?
-require 'aws-sdk'
+require 'aws-sdk-ec2'
+require 'aws-sdk-rds'
 require 'haml'
 require 'sqlite3'
 require 'dm-core'
